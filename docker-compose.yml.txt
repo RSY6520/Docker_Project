@@ -1,0 +1,30 @@
+version: '3'
+services:
+        dbos:
+                image: mysql:5.7
+                volumes: 
+                        - mysql_storage_new:/var/lib/mysql
+                restart: always
+                environment:
+                        MYSQL_ROOT_PASSWORD: redhat
+                        MYSQL_USER: rsyadav
+                        MYSQL_PASSWORD: rssql
+                        MYSQL_DATABASE: 
+ 	wpos:
+                image: wordpress:5.1.1-php7.3-apache
+                volumes:
+                        - wordpress_storage_new:/var/www/html
+                restart: always
+                depends_on:
+                        - dbos
+                ports: 
+                        - 8082:80
+                environment:
+                        WORDPRESS_DB_HOST: dbos
+                        WORDPRESS_DB_USER: rsyadav
+                        WORDPRESS_DB_PASSWORD: rswdpss
+			WORDPRESS_DB_NAME: rsydb
+
+volumes:
+	mysql_storage_new:
+	wordpress_storage_new:
