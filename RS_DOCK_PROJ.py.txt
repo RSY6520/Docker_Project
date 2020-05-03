@@ -1,0 +1,333 @@
+import os
+from pyfiglet import Figlet
+
+def render(text,style):
+	f=Figlet(font=style)
+	print('\n'*1)
+	print(f.renderText(text))
+os.system("clear")
+os.system("tput setaf 4")
+render('Docker Project','epic')
+os.system("tput setaf 5")
+
+os.system("tput setaf 5")
+
+render('\t Mr.RS YADAV','digital')
+
+os.system("tput setaf 2")
+
+print("""Press 1: main menu
+	 Press 2: exit
+	 """)1.
+print("Enter Your Choice ", end=" : ")
+
+y=input()
+
+if int(y)==1:             
+
+    while True:
+        os.system("clear")
+        os.system("tput setaf 10")
+        render('main menu','bubble')
+
+        os.system("tput setaf 4")
+
+        print("""
+
+            Press 1: To Pull an image (Content Manegement System) 
+
+            Press 2: To Pull an image (For the Database)
+
+            Press 3: Deploy Your Services.
+
+            Press : Run Infrastructure using Docker-Compose
+
+            Press 6: Exit
+
+            """)
+
+        os.system("tput setaf 4")
+
+        print("Enter Your Choice: ",end=" ")
+
+        ch=input()
+
+        os.system("tput setaf 7")
+
+        if int(ch)==1:                                 
+
+            while True:
+
+                os.system("clear")
+
+                os.system("tput setaf 2")
+
+                render('CONTENT  MANAGEMENT SYSTEM','digital')
+
+                os.system("tput setaf 4")
+
+                print("""\t\t    Welcome!To SetUp Your WebApp Images  
+
+                 ----------------Select-------------------""")
+
+               
+                print("""
+                    Press 1: Joomla
+                    Press 2: WordPress
+                    Press 3: Back
+                    """)
+
+                print("Enter Your Choice: ",end=" ")
+
+                ch1=input()
+
+                os.system("tput setaf 7")
+
+
+
+                if int(ch1)==1:
+
+                    os.system("docker pull joomla")
+
+                elif int(ch1)==2:
+
+                    os.system("docker pull wordpress:5.1.1-php7.3-apache")
+
+
+                elif int(ch1)==3:
+
+                    break
+
+        if int(ch)==2:                                           
+
+            while True:
+
+                os.system("clear")
+
+                os.system("tput setaf 2")
+
+                render('DATABASE MANAGEMENT SYSTEM','digital')
+
+                os.system("tput setaf 4")
+
+                print("""
+
+                    -----------------------Welcome!! To Setup Your DataBase----------------
+
+                    """)
+
+                
+
+                print("""
+
+                    Press 1: MySQL
+
+                    Press 2: Mongo
+
+                    Press 3: Back
+
+                    """)
+
+                print("Enter Your Choice: ",end=" ")
+
+                ch1=input()
+
+                os.system("tput setaf 7")
+
+                if int(ch1)==1:
+
+                    os.system("docker pull mysql:5.7")
+
+                elif int(ch1)==2:
+
+                    os.system("docker pull mongo")
+
+                elif int(ch1)==3:
+
+                    break
+
+        elif int(ch)==3:
+
+            while True:
+
+                os.system("clear")
+
+                os.system("tput setaf 2")
+
+                render('DEPLOY SERVICES','bubble')
+
+                os.system("tput setaf 4")
+
+                print("""
+
+                    Press 1: First Deploy the Database to Store the data.
+
+                    Press 2: Secondly Deploy the WebApp.
+
+                    Press 3: Back
+
+                    """)
+
+                
+
+                print("Enter the Choice: ",end=" ")
+
+                ch1=input()
+
+                
+
+                if int(ch1)==1:
+
+                    while True:
+
+                        
+
+                        print("""
+
+                              Choose An Image For the Database: 
+
+                              Press 1: MySQL
+
+                              Press 2: Mongo
+
+                              """)
+
+                        print("Enter Your Choice: ",end=" ")
+
+                        ch2=input()
+
+                        os.system("tput setaf 3")
+
+                        if int(ch2)==1:
+
+                            print("Choose the Root Password and Enter Here: ",end=" ")
+
+                            root_pass=input()
+
+                            print("Enter the name of the USER: ",end=" ")
+
+                            user_name=input()
+
+                            print("Enter the Password for this USER: ",end=" ")
+
+                            user_pass=input()
+
+                            print("Give The name to your Database: ",end=" ")
+
+                            db_name=input()
+
+                            print("These are the Local Storage which you have made choose from here : ")
+
+                            os.system("docker volume ls")
+
+                            print("Enter the Name of Docker_storage:  ",end=" ")
+
+                            db_os_name=input()
+
+                            print("Give the name to your container(this name will be used to link): ",end=" ")
+
+                            nam_cont=input()
+
+                            os.system("docker run -dit -e MYSQL_ROOT_PASSWORD={0} -e MYSQL_USER={1} -e MYSQL_PASSWORD={2} -e MYSQL_DATABASE={3} -v {4}:/var/lib/mysql --name {5} mysql:5.7".format(root_pass,user_name,user_pass,db_name,db_os_name,nam_cont))
+
+                            break
+
+                        elif int(ch2)==2:	
+
+                            print("Check That Here container is running or Not: ")
+
+                            os.system("docker ps -a")
+
+                            input()
+
+                            break
+
+                elif int(ch1)==2:
+
+                    os.system("tput setaf 4")
+
+                    while True:
+
+                        print(""" 
+
+                            Choose an image for the WebApp: 
+
+                            Press 1: WordPress
+
+                            Press 2: Joomla
+
+                            """)
+
+                        print("Enter Your Choice: ",end=" ")
+
+                        ch2=input()
+
+                        if int(ch2)==1:
+
+                            os.system("tput setaf 3")
+
+                            print("\t\t----IMPORTANT NOTE (Give The Informataion Same as the DATABASE IMAGE)",end="\n ")
+
+                            print("Enter the Host Name: ",end=" ")
+
+                            host_name=input()
+
+                            print("Enter DB USER NAME: ",end=" ")
+
+                            user_name=input()
+
+                            print("Enter DB USER Password : ",end=" ")
+
+                            user_pass=input()
+
+                            print("Enter DB name: ",end=" ")
+
+                            db_name=input()
+
+                            print("These are the Local Storage which you have made choose from here : ")
+
+                            os.system("docker volume ls")
+
+                            print("Storage Name For this WebApp Image: ",end=" ")
+
+                            dock_storage_name=input()
+
+                            print("Give the name to for this image: ",end=" ")
+
+                            db_os_name=input()
+
+                            
+
+                            os.system("docker run -dit -e WORDPRESS_DB_HOST={0} -e WORDPRESS_DB_USER={1} -e WORDPRESS_DB_PASSWORD={2} -e WORDPRESS_DB_NAME={3} -v {4}:/var/www/html --link {0} -p 8080:80 --name {5} wordpress:5.1.1-php7.3-apache".format(host_name,user_name,user_pass,db_name,db_os_name,db_os_name))
+
+                            input()
+
+                            break
+
+                elif int(ch1)==3:
+
+                    break
+
+        elif int(ch)==4:
+
+            os.system("clear")
+
+            os.system("tput setaf 3")
+
+            render('THANK YOU','epic')
+
+            os.system("tput setaf 7")
+
+            break
+
+else :
+
+    os.system("clear")
+
+    os.system("tput setaf 3")
+
+    render('THANK YOU','epic')
+
+    os.system("exit")
+
+    os.system("tput setaf 7")
